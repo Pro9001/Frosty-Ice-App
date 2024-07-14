@@ -7,6 +7,7 @@ const botPrice = 100000;
 let energy = 5000;
 const maxEnergy = 5000;
 let isTapping = false; // Flag to prevent simultaneous tapping
+const referralBonus = 100000; // Referral bonus amount
 
 // Function to handle tap events
 function handleTap(event) {
@@ -86,10 +87,31 @@ function showAbout() {
 function showReferral() {
     const referralSection = document.getElementById('referral-section');
     referralSection.classList.toggle('hidden');
+    const userId = getUserId();
+    const referralLink = `${window.location.href.split('?')[0]}?ref=${userId}`;
+    document.getElementById('referral-link').innerText = referralLink;
+}
+
+function copyReferralLink() {
+    const referralLink = document.getElementById('referral-link').innerText;
+    navigator.clipboard.writeText(referralLink).then(() => {
+        showConfirmation('Referral link copied to clipboard!');
+    }, () => {
+        alert('Failed to copy referral link.');
+    });
 }
 
 function showConfirmation(message) {
     alert(message);
+}
+
+function getUserId() {
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        userId = 'user_' + new Date().getTime();
+        localStorage.setItem('userId', userId);
+    }
+    return userId;
 }
 
 // Function to give welcome bonus to users
@@ -97,17 +119,3 @@ function giveWelcomeBonus() {
     if (!localStorage.getItem('welcomeBonusGiven')) {
         balance += 1000000; // Add 1 million coins as welcome bonus
         localStorage.setItem('balance', balance); // Store balance in localStorage
-        localStorage.setItem('welcomeBonusGiven', true); // Mark welcome bonus as given
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    let totalJoined = parseInt(localStorage.getItem('totalJoined')) || 0;
-    totalJoined++;
-    localStorage.setItem('totalJoined', totalJoined);
-    document.getElementById('total-joined').innerText = totalJoined;
-    giveWelcomeBonus(); // Call function to give welcome bonus
-    balance = parseInt(localStorage.getItem('balance')) || 0; // Retrieve balance from localStorage
-    document.getElementById('balance').innerText = balance; // Update balance display
-    updateEnergyBar();
-});
