@@ -1,51 +1,88 @@
+/* styles.css */
 body {
+    background-color: #f0f2f5;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
-.app-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+.login-container {
+    background-color: white;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 360px;
     text-align: center;
 }
 
-header {
-    margin-bottom: 20px;
-}
-
-header h1 {
+.login-header h1 {
+    color: #1877f2;
+    font-size: 48px;
     margin: 0;
-    color: #333;
+    font-weight: 700;
 }
 
-.balance {
-    margin-bottom: 20px;
+.login-form {
+    margin-top: 20px;
 }
 
-.balance h2 {
-    margin: 0;
-    color: #333;
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
 }
 
-.actions button {
-    background-color: #007bff;
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1877f2;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 10px;
-    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-.actions button:hover {
-    background-color: #0056b3;
+.login-form button:hover {
+    background-color: #165fc4;
+}
+
+.forgot-password {
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.divider {
+    height: 1px;
+    background-color: #dddfe2;
+    margin: 20px 0;
+}
+
+.create-account {
+    width: 100%;
+    padding: 10px;
+    background-color: #42b72a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.create-account:hover {
+    background-color: #36a420;
 }
