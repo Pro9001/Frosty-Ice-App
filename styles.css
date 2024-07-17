@@ -1,50 +1,51 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('https://i.ibb.co/zP8cdgB/6ee19142a58f28b93766a9f44663a540.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    background-color: #f5f5f5;
     margin: 0;
-    font-weight: bold;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.galaxy {
-    background-image: url('https://i.ibb.co/LCYCfBy/png-clipart-gold-coin-xc9cu-snowflake-pattern-coins-photography-snowflakes-photoaidcom-cropped.png');
-    background-size: cover;
+.app-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
-    height: 300px;
-    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+
+.balance {
+    margin-bottom: 20px;
+}
+
+.balance h2 {
+    margin: 0;
+    color: #333;
+}
+
+.actions button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
     cursor: pointer;
-    position: relative;
-    animation: none;
 }
 
-@keyframes vibrate {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-}
-
-.vibrate {
-    animation: vibrate 0.2s linear 1;
-}
-
-.coin-anim {
-    position: absolute;
-    font-size: 24px;
-    color: yellow;
-    animation: fadeOut 2s forwards;
-}
-
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; top: -50px; }
+.actions button:hover {
+    background-color: #0056b3;
 }
