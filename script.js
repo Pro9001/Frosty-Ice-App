@@ -1,53 +1,25 @@
-let balance = parseInt(localStorage.getItem('balance')) || 0;
-const normalMultiplier = 5;
-let isTapping = false; // Flag to prevent simultaneous tapping
+document.addEventListener('DOMContentLoaded', () => {
+    const balanceElement = document.getElementById('balance');
+    const earnButton = document.getElementById('earn-button');
+    const spendButton = document.getElementById('spend-button');
 
-// Function to handle tap events
-function handleTap(event) {
-    if (!isTapping) {
-        isTapping = true;
-        let increment = normalMultiplier;
-        balance += increment;
-        showCoinAnimation(event, increment);
-        vibrateCoin();
-        localStorage.setItem('balance', balance); // Store balance in localStorage
-        setTimeout(() => {
-            isTapping = false; // Reset tapping flag after processing
-        }, 100); // Adjust this delay as needed to handle rapid tapping
+    let balance = 0;
+
+    earnButton.addEventListener('click', () => {
+        balance += 10; // Earn 10 Notcoins
+        updateBalance();
+    });
+
+    spendButton.addEventListener('click', () => {
+        if (balance >= 10) {
+            balance -= 10; // Spend 10 Notcoins
+            updateBalance();
+        } else {
+            alert('Not enough Notcoins!');
+        }
+    });
+
+    function updateBalance() {
+        balanceElement.textContent = balance;
     }
-}
-
-function showCoinAnimation(event, increment) {
-    const coinAnim = document.createElement('div');
-    coinAnim.className = 'coin-anim';
-    coinAnim.innerText = `+${increment} coins`;
-    document.body.appendChild(coinAnim);
-
-    const rect = event.target.getBoundingClientRect();
-    coinAnim.style.left = `${rect.left + rect.width / 2 - 50}px`;
-    coinAnim.style.top = `${rect.top}px`;
-
-    setTimeout(() => {
-        document.body.removeChild(coinAnim);
-    }, 2000);
-}
-
-function vibrateCoin() {
-    const galaxyElement = document.querySelector('.galaxy');
-    galaxyElement.classList.add('vibrate');
-    setTimeout(() => {
-        galaxyElement.classList.remove('vibrate');
-    }, 200); // Duration of the vibration animation
-}
-
-// Function to give welcome bonus to users
-function giveWelcomeBonus() {
-    if (!localStorage.getItem('welcomeBonusGiven')) {
-        balance += 1000000; // Add 1 million coins as welcome bonus
-        localStorage.setItem('balance', balance); // Store balance in localStorage
-        localStorage.setItem('welcomeBonusGiven', 'true'); // Mark welcome bonus as given
-    }
-}
-
-// Give welcome bonus if applicable
-giveWelcomeBonus();
+});
